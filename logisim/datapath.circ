@@ -229,7 +229,7 @@
       <a name="value" val="0x0"/>
       <a name="width" val="2"/>
     </comp>
-    <comp lib="0" loc="(840,680)" name="Constant">
+    <comp lib="0" loc="(840,690)" name="Constant">
       <a name="value" val="0x4"/>
       <a name="width" val="5"/>
     </comp>
@@ -391,14 +391,14 @@
       <a name="mode" val="unsigned"/>
       <a name="width" val="2"/>
     </comp>
-    <comp lib="3" loc="(810,660)" name="Adder">
+    <comp lib="3" loc="(810,620)" name="Adder">
       <a name="width" val="5"/>
     </comp>
     <comp lib="3" loc="(870,860)" name="Comparator">
       <a name="mode" val="unsigned"/>
       <a name="width" val="2"/>
     </comp>
-    <comp lib="3" loc="(920,670)" name="Adder">
+    <comp lib="3" loc="(920,680)" name="Adder">
       <a name="width" val="5"/>
     </comp>
     <comp lib="3" loc="(960,860)" name="Comparator">
@@ -430,23 +430,27 @@
       <a name="label" val="GAME_ADV_REGISTER"/>
       <a name="width" val="3"/>
     </comp>
-    <comp lib="8" loc="(1080,1944)" name="Text">
+    <comp lib="8" loc="(1080,1940)" name="Text">
       <a name="font" val="SansSerif bold 32"/>
       <a name="text" val="UPDATE PD MANCHE"/>
     </comp>
-    <comp lib="8" loc="(168,131)" name="Text">
+    <comp lib="8" loc="(165,130)" name="Text">
       <a name="font" val="SansSerif bold 35"/>
       <a name="text" val="INPUTS"/>
     </comp>
-    <comp lib="8" loc="(379,1941)" name="Text">
+    <comp lib="8" loc="(375,1940)" name="Text">
       <a name="font" val="SansSerif bold 32"/>
       <a name="text" val="UPDATE GAME ADV LOGIC"/>
     </comp>
-    <comp lib="8" loc="(704,1044)" name="Text">
+    <comp lib="8" loc="(700,1040)" name="Text">
       <a name="font" val="SansSerif bold 32"/>
       <a name="text" val="MANCHE WINNER LOGIC"/>
     </comp>
-    <comp lib="8" loc="(903,304)" name="Text">
+    <comp lib="8" loc="(714,326)" name="Text">
+      <a name="font" val="SansSerif bold 14"/>
+      <a name="text" val="LOGICA COMBINATORIA PERSONALIZZATA"/>
+    </comp>
+    <comp lib="8" loc="(900,300)" name="Text">
       <a name="font" val="SansSerif bold 32"/>
       <a name="text" val="TOTAL MANCHE  LOGIC"/>
     </comp>
@@ -620,6 +624,9 @@
     <wire from="(560,780)" to="(820,780)"/>
     <wire from="(560,850)" to="(570,850)"/>
     <wire from="(560,870)" to="(570,870)"/>
+    <wire from="(570,330)" to="(570,650)"/>
+    <wire from="(570,330)" to="(900,330)"/>
+    <wire from="(570,650)" to="(900,650)"/>
     <wire from="(590,1200)" to="(590,1230)"/>
     <wire from="(600,1260)" to="(600,1280)"/>
     <wire from="(600,1280)" to="(1190,1280)"/>
@@ -661,14 +668,15 @@
     <wire from="(720,1960)" to="(760,1960)"/>
     <wire from="(720,530)" to="(720,560)"/>
     <wire from="(720,530)" to="(830,530)"/>
-    <wire from="(730,580)" to="(730,670)"/>
-    <wire from="(730,670)" to="(770,670)"/>
+    <wire from="(730,580)" to="(730,630)"/>
+    <wire from="(730,630)" to="(770,630)"/>
     <wire from="(750,1980)" to="(760,1980)"/>
     <wire from="(750,220)" to="(1350,220)"/>
-    <wire from="(750,580)" to="(750,650)"/>
+    <wire from="(750,580)" to="(750,610)"/>
     <wire from="(750,580)" to="(850,580)"/>
-    <wire from="(750,650)" to="(770,650)"/>
+    <wire from="(750,610)" to="(770,610)"/>
     <wire from="(750,70)" to="(750,220)"/>
+    <wire from="(790,640)" to="(810,640)"/>
     <wire from="(80,780)" to="(280,780)"/>
     <wire from="(80,780)" to="(80,850)"/>
     <wire from="(80,850)" to="(90,850)"/>
@@ -680,30 +688,35 @@
     <wire from="(810,380)" to="(850,380)"/>
     <wire from="(810,410)" to="(840,410)"/>
     <wire from="(810,440)" to="(830,440)"/>
-    <wire from="(810,660)" to="(880,660)"/>
+    <wire from="(810,620)" to="(820,620)"/>
+    <wire from="(820,620)" to="(820,670)"/>
+    <wire from="(820,670)" to="(880,670)"/>
     <wire from="(820,780)" to="(1030,780)"/>
     <wire from="(820,780)" to="(820,850)"/>
     <wire from="(820,850)" to="(830,850)"/>
     <wire from="(820,870)" to="(830,870)"/>
     <wire from="(830,440)" to="(830,510)"/>
     <wire from="(840,410)" to="(840,510)"/>
-    <wire from="(840,680)" to="(880,680)"/>
+    <wire from="(840,690)" to="(880,690)"/>
     <wire from="(850,380)" to="(850,510)"/>
     <wire from="(850,550)" to="(850,580)"/>
     <wire from="(860,350)" to="(860,510)"/>
     <wire from="(870,860)" to="(880,860)"/>
     <wire from="(880,860)" to="(880,910)"/>
     <wire from="(880,910)" to="(910,910)"/>
+    <wire from="(900,330)" to="(900,650)"/>
     <wire from="(910,770)" to="(1040,770)"/>
     <wire from="(910,770)" to="(910,850)"/>
     <wire from="(910,850)" to="(920,850)"/>
     <wire from="(910,870)" to="(920,870)"/>
     <wire from="(910,910)" to="(910,920)"/>
-    <wire from="(920,670)" to="(970,670)"/>
+    <wire from="(920,680)" to="(930,680)"/>
     <wire from="(920,950)" to="(920,990)"/>
     <wire from="(920,990)" to="(920,1170)"/>
     <wire from="(920,990)" to="(950,990)"/>
     <wire from="(930,2000)" to="(930,2020)"/>
+    <wire from="(930,670)" to="(930,680)"/>
+    <wire from="(930,670)" to="(970,670)"/>
     <wire from="(930,910)" to="(930,920)"/>
     <wire from="(930,910)" to="(970,910)"/>
     <wire from="(940,2050)" to="(940,2080)"/>
