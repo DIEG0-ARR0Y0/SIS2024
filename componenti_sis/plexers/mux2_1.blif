@@ -1,4 +1,4 @@
-.model mux4_1
+.model mux2_1
 .inputs s1 s0 i3 i2 i1 i0
 .outputs o
 
