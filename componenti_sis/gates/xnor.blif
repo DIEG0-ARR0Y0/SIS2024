@@ -1,5 +1,5 @@
 .model xnor
-.inputs i0 i1
+.inputs i1 i0
 .outputs o
 
 .names

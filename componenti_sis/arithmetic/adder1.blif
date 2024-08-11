@@ -1,16 +1,16 @@
 .model adder1
-.inputs A B CIN
-.outputs O COUT
+.inputs a b cin
+.outputs o cout
 
-.names A B K
+.names a b k
 01 1
 10 1
 
-.names K CIN O
+.names k cin o
 01 1
 10 1
 
-.names A B CIN COUT
+.names a b cin cout
 -11 1
 1-1 1
 11- 1

@@ -1,6 +1,6 @@
 .model and
 .inputs i1 i0
-.outputs out
+.outputs o
 
 .names
 11 1

@@ -1,6 +1,6 @@
 .model not1
 .inputs i
-.outputs out
+.outputs o
 
 .names
 0 1

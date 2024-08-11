@@ -1,7 +1,7 @@
 .model reg1
-.inputs I
-.outputs O
+.inputs i
+.outputs o
 
-.latch I O re NIL 0
+.latch i o re NIL 0
 
 .end

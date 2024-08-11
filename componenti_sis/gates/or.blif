@@ -1,6 +1,6 @@
 .names or
 .inputs i1 i0
-.outputs out
+.outputs o
 
 .names
 00 0

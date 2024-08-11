@@ -1,12 +1,12 @@
 .model adder5
-.inputs A4 A3 A2 A1 A0 B4 B3 B2 B1 B0 CIN
-.outputs O4 O3 O2 O1 O0 COUT
+.inputs a4 a3 a2 a1 a0 b4 b3 b2 b1 b0 cin
+.outputs o4 o3 o2 o1 o0 cout
 
-.subckt A=A0 B=B0 CIN=CIN O=O0 COUT=C0
-.subckt A=A1 B=B1 CIN=C0 O=O1 COUT=C1
-.subckt A=A1 B=B1 CIN=C1 O=O1 COUT=C2
-.subckt A=A1 B=B1 CIN=C2 O=O1 COUT=C3
-.subckt A=A4 B=B4 CIN=C3 O=O1 COUT=COUT
+.subckt a=a0 b=b0 cin=cin o=o0 cout=c0
+.subckt a=a1 b=b1 cin=c0 o=o1 cout=c1
+.subckt a=a1 b=b1 cin=c1 o=o1 cout=c2
+.subckt a=a1 b=b1 cin=c2 o=o1 cout=c3
+.subckt a=a4 b=b4 cin=c3 o=o1 cout=cout
 
 .search adder1.blif
 

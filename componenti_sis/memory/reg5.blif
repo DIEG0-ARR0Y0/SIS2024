@@ -1,12 +1,12 @@
 .model reg5
-.inputs I4 I3 I2 I1 I0
-.outputs O4 O3 O2 O1 O0
+.inputs i4 i3 i2 i1 i0
+.outputs o4 o3 o2 o1 o0
 
-.subckt I=I4 O=O4
-.subckt I=I3 O=O3
-.subckt I=I2 O=O2
-.subckt I=I1 O=O1
-.subckt I=I0 O=O0
+.subckt reg1 i=i4 o=o4
+.subckt reg1 i=i3 o=o3
+.subckt reg1 i=i2 o=o2
+.subckt reg1 i=i1 o=o1
+.subckt reg1 i=i0 o=o0
 
 .search reg1.blif
 

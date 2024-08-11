@@ -1,9 +1,9 @@
 .model reg2
-.inputs I1 I0
-.outputs O1 O0
+.inputs i1 i0
+.outputs o1 o0
 
-.subckt I=I1 O=O1
-.subckt I=I0 O=O0
+.subckt reg1 i=i1 o=o1
+.subckt reg1 i=i0 o=o0
 
 .search reg1.blif 
 
