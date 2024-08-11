@@ -1,0 +1,11 @@
+.model mux4_1
+.inputs s1 s0 i3 i2 i1 i0
+.outputs o
+
+.names s1 s0 i3 i2 i1 i0 o
+001--- 1
+01-1-- 1
+10--1- 1
+11---1 1
+
+.end
