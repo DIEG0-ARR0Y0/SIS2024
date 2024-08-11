@@ -1,4 +1,4 @@
-.model uguale5
+.model eql5
 .inputs a4 a3 a2 a1 a0 b4 b3 b2 b1 b0
 .outputs o
 

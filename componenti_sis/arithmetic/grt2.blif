@@ -1,4 +1,4 @@
-.model maggiore2
+.model grt2
 .inputs a1 a0 b1 b0
 .outputs o
 
