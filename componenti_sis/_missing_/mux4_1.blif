@@ -1,0 +1,11 @@
+.model mux4_1.blif
+.inputs S1 S0 I3 I2 I1 I0
+.outputs O
+
+.names S1 S0 I3 I2 I1 I0
+001--- 1
+01-1-- 1
+10--1- 1
+11---1 1
+
+.end

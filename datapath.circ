@@ -282,7 +282,7 @@
       <a name="label" val="FINAL"/>
       <a name="width" val="5"/>
     </comp>
-    <comp lib="8" loc="(345,522)" name="Text">
+    <comp lib="8" loc="(345,520)" name="Text">
       <a name="text" val="PLA AD HOC"/>
     </comp>
     <comp lib="8" loc="(880,165)" name="Text">
@@ -560,9 +560,6 @@
       <a name="label" val="WCOUNT_2"/>
       <a name="width" val="5"/>
     </comp>
-    <comp lib="8" loc="(1235,310)" name="Text">
-      <a name="text" val="OTTIMIZZABILE"/>
-    </comp>
     <comp lib="8" loc="(1385,165)" name="Text">
       <a name="font" val="SansSerif bold 20"/>
       <a name="text" val="GAME ADVANTAGE"/>
@@ -709,12 +706,15 @@
       <a name="size" val="30"/>
     </comp>
     <comp lib="3" loc="(410,230)" name="Comparator">
+      <a name="mode" val="unsigned"/>
       <a name="width" val="5"/>
     </comp>
     <comp lib="3" loc="(410,360)" name="Comparator">
+      <a name="mode" val="unsigned"/>
       <a name="width" val="5"/>
     </comp>
     <comp lib="3" loc="(630,250)" name="Comparator">
+      <a name="mode" val="unsigned"/>
       <a name="width" val="5"/>
     </comp>
     <comp lib="8" loc="(355,170)" name="Text">
@@ -940,6 +940,7 @@
       <a name="width" val="2"/>
     </comp>
     <comp lib="3" loc="(1040,1510)" name="Comparator">
+      <a name="mode" val="unsigned"/>
       <a name="width" val="2"/>
     </comp>
     <comp lib="3" loc="(470,760)" name="Comparator">
@@ -962,6 +963,7 @@
       <a name="width" val="4"/>
     </comp>
     <comp lib="3" loc="(980,1050)" name="Comparator">
+      <a name="mode" val="unsigned"/>
       <a name="width" val="2"/>
     </comp>
     <comp lib="4" loc="(340,1520)" name="Register">

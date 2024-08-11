@@ -1,0 +1,8 @@
+.model nor
+.inputs i1 i0
+.outputs out
+
+.names
+00 1
+
+.end

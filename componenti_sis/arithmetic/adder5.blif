@@ -1,0 +1,13 @@
+.model adder5
+.inputs A4 A3 A2 A1 A0 B4 B3 B2 B1 B0 CIN
+.outputs O4 O3 O2 O1 O0 COUT
+
+.subckt A=A0 B=B0 CIN=CIN O=O0 COUT=C0
+.subckt A=A1 B=B1 CIN=C0 O=O1 COUT=C1
+.subckt A=A1 B=B1 CIN=C1 O=O1 COUT=C2
+.subckt A=A1 B=B1 CIN=C2 O=O1 COUT=C3
+.subckt A=A4 B=B4 CIN=C3 O=O1 COUT=COUT
+
+.search adder1.blif
+
+.end

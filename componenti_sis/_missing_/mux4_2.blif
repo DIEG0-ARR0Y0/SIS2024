@@ -1,0 +1,10 @@
+.model mux4_2
+.inputs X1 X2 A1 A0 B1 B0 C1 C0 D1 D0
+.outputs O1 O0
+
+.subckt mux4_1 X1=S1 X0=S0 I3=A1 I2=B1 I1=C1 I0=D1
+.subckt mux4_1 X1=S1 X0=S0 I3=A0 I2=B0 I1=C0 I0=D0
+
+.search mux4_1.blif
+
+.end
