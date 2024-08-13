@@ -2,11 +2,11 @@
 .inputs a4 a3 a2 a1 a0 b4 b3 b2 b1 b0 cin
 .outputs o4 o3 o2 o1 o0 cout
 
-.subckt a=a0 b=b0 cin=cin o=o0 cout=c0
-.subckt a=a1 b=b1 cin=c0 o=o1 cout=c1
-.subckt a=a1 b=b1 cin=c1 o=o1 cout=c2
-.subckt a=a1 b=b1 cin=c2 o=o1 cout=c3
-.subckt a=a4 b=b4 cin=c3 o=o1 cout=cout
+.subckt adder1 a=a0 b=b0 cin=cin o=o0 cout=c0
+.subckt adder1 a=a1 b=b1 cin=c0 o=o1 cout=c1
+.subckt adder1 a=a2 b=b2 cin=c1 o=o2 cout=c2
+.subckt adder1 a=a3 b=b3 cin=c2 o=o3 cout=c3
+.subckt adder1 a=a4 b=b4 cin=c3 o=o4 cout=cout
 
 .search adder1.blif
 
