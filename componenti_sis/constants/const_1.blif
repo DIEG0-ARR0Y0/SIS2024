@@ -1,5 +1,5 @@
 .model const_1
-.outputs a
-.names a
+.outputs o
+.names o
 1
 .end

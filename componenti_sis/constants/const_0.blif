@@ -1,4 +1,4 @@
 .model const_0
-.outputs a
-.names a
+.outputs o
+.names o
 .end

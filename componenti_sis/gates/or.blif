@@ -1,9 +1,8 @@
-.names or
+.model or
 .inputs i1 i0
 .outputs o
 
-.names
+.names i1 i0 o
 00 0
 
 .end
-

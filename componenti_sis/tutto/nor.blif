@@ -2,7 +2,7 @@
 .inputs i1 i0
 .outputs o
 
-.names
+.names i1 i0 o
 00 1
 
 .end
