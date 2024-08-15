@@ -1,0 +1,48 @@
+.model match_winner
+.inputs p11 p10 p21 p20 START
+.outputs WIN1 WIN2 INVALID
+
+.subckt const_0 o=ZERO
+.subckt const_1 o=ONE
+
+# pla 
+.subckt pla i3=p11 i2=p10 i1=p21 i0=p20 o1=tmp_matchwinner1 o0=tmp_matchwinner0
+
+# first layer
+.subckt eql2 a1=tmp_matchwinner1 a0=tmp_matchwinner0 b1=ZERO b0=ONE o=eql1_out
+.subckt eql2 a1=tmp_matchwinner1 a0=tmp_matchwinner0 b1=ONE b0=ZERO o=eql2_out
+.subckt eql2 a1=tmp_matchwinner1 a0=tmp_matchwinner0 b1=ONE b0=ONE o=eql3_out
+.subckt eql2 a1=tmp_matchwinner1 a0=tmp_matchwinner0 b1=ZERO b0=ZERO o=eql0_out
+
+# weird mux
+.subckt mux1_2 s=bottom_eql_out a1=tmp_matchwinner1 a0=tmp_matchwinner0 b1=ZERO b0=ZERO o1=weird1 o0=weird2
+
+# left side
+.subckt mux2_2 s1=weird1 s0=weird0 a1=last_winner1 a0=last_winner0 b1=weird1 b0=weird0 c1=weird1 c0=weird0 d1=ZERO d0=ZERO o1=left_mux_out1 o0=left_mux_out0
+.subckt mux1_2 s=START a1=left_mux_out1 a0=left_mux_out0 b1=ZERO b0=ZERO o1=left_mux2_out1 o2=left_mux2_out0
+.subckt reg2 i1=left_mux2_out1 i0=left_mux2_out0 o1=last_winner1 o0=last_winner0
+
+# middle
+.subckt mux2_2 s1=weird1 s0=weird0 a1=last_winner_move1 a0=last_winner_move0 b1=p11 b0=p10 c1=p21 c0=p20 d1=last_winner_move1 d0=last_winner_move0 o1=middle_mux_out1 o0=middle_mux_out0
+.subckt mux1_2 s1=START a1=middle_mux_out1 a0=middle_mux_out0 b1=ZERO b0=ZERO o1=middle_mux2_out1 o0=middle_mux2_out0
+.subckt reg2 i1=middle_mux2_out1 i0=middle_mux2_out0 o1=last_winner_move1 o0=last_winner_move0
+
+# right side
+.subckt not2 i1=last_winner_move1 i0=last_winner_move0 o1=not_last_winner_move1 o0=not_last_winner_move0
+.subckt mux2_2 s1=last_winner1 s0=last_winner0 a1=not_last_winner_move1 a0=not_last_winner_move0 b1=p11 b0=p10 c1=p21 c0=p20 d1=not_last_winner_move1 d0=not_last_winner_move0 o1=right_mux_out1 o0=right_mux_out0
+
+# bottom eql
+.subckt eql2 a1=last_winner1 a0=last_winner0 b1=right_mux_out1 b0=right_mux_out0 o=bottom_eql_out
+# top eql
+.subckt eql2 a1=weird1 a0=weird0 b1=ZERO b0=ZERO o1=top_eql_out
+
+
+# second layer
+.subckt nor i1=eql3_out i0=eql0_out o=nor_out
+.subckt and i1=nor_out i0=eql1_out o=WIN1
+.subckt and i1=nor_out i0=eql2_out o=WIN2
+
+# third layer
+.subckt nor i1=eql0_out i0=top_eql_out o=INVALID
+
+.end
