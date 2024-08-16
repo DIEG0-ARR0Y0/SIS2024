@@ -32,7 +32,7 @@
 .subckt mux2_2 s1=last_winner1 s0=last_winner0 a1=not_last_winner_move1 a0=not_last_winner_move0 b1=p11 b0=p10 c1=p21 c0=p20 d1=not_last_winner_move1 d0=not_last_winner_move0 o1=right_mux_out1 o0=right_mux_out0
 
 # bottom eql
-.subckt eql2 a1=last_winner1 a0=last_winner0 b1=right_mux_out1 b0=right_mux_out0 o=bottom_eql_out
+.subckt eql2 a1=last_winner_move1 a0=last_winner_move0 b1=right_mux_out1 b0=right_mux_out0 o=bottom_eql_out
 # top eql
 .subckt eql2 a1=weird1 a0=weird0 b1=ZERO b0=ZERO o=top_eql_out
 
@@ -43,7 +43,7 @@
 .subckt and i1=nor_out i0=eql2_out o=WIN2
 
 # third layer
-.subckt nor i1=eql0_out i0=top_eql_out o=INVALID
+.subckt or i1=eql0_out i0=top_eql_out o=INVALID
 
 
 .search const_0.blif
@@ -56,5 +56,6 @@
 .search not2.blif
 .search nor.blif
 .search and.blif
+.search or.blif
 
 .end
