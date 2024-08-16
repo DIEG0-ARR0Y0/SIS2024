@@ -1,0 +1,79 @@
+.model match_winner
+
+.inputs a1 a0 b1 b0 start 	#mossa p1 = (a1,a0) ; mossa p2 = (b1,b0)
+
+.outputs win1 win2 invalid
+
+#const
+.subckt const_0 o=ZERO
+.subckt const_1 o=ONE
+
+#sottoprogramma con uscite twm = "temporary manche winner" 1 e 0
+.subckt PLA2 i3=a1 i2=a0 i1=b1 i0=b0 o1=tmw1 o0=tmw0      
+
+#comparatori eql
+.subckt eql2x a1=tmw1 a0=tmw0 b1=0 b0=1 o=x1    #x1 #vedere nel circuito l'uscita x1
+.subckt eql2x a1=tmw1 a0=tmw0 b1=1 b0=0 o=x2    #x2
+.subckt eql2x a1=tmw1 a0=tmw0 b1=1 b0=1 o=x3 	#x3
+.subckt eql2x a1=tmw1 a0=tmw0 b1=0 b0=0 o=x0 	#x0
+
+.subckt nor i1=x3 i0=x4 o=x5		#x5
+.subckt and i1=x1 i0=x5 o=win1		#x6		si ottiene winner1
+.subckt and i1=x2 i0=x5 o=win2		#x7 	si ottiene winner2
+
+#searches
+.search nor.blif
+.search eql2x.blif
+.search PLA2.blif
+.search and.blif
+.search const_0.blif
+.search const_1.blif
+
+
+#mux x18
+.subckt mux1_2 s=x17 i3=tmw1 i2=tmw0 i1=ZERO i0=ZERO 	o1=x18_1 o0=x18_0
+
+#mux x13
+.subckt mux2_2 s1=x18_1 s2=x18_0 a1=x15_1 a0=x15_0 b1=a1 b0=a0 c1=b1 c0=b0 d1=x15_1 d0=x15_0  o1=x13_1 o0=x13_0
+
+#mux x10
+.subckt mux2_2 s1=x18_1 s2=x18_0 a1=x12_1 a0=x12_0 b1=x18_1 b0=x18_0 c1=x18_1 c0=x18_0 d1=ZERO d0=ZERO 	o1=x10_1 o0=x10_0
+
+#mux x11
+.subckt mux1_2  s=start i3=x10_1 i2=x10_1 i1=ZERO i0=ZERO	 o1=x11_1 o0=x11_0
+
+#mux x14
+.subckt mux1_2  s=start i3=x13_1 i2=x13_0 i1=ZERO i0=ZERO  o1=x14_1 o0=x14_0
+
+#notx15
+.subckt not2 i1=x15_1 i0=x15_0  o1=NOTx15_1 o=NOTx15_0
+
+#mux x16
+.subckt mux2_2 s1=x12_1 s2=x12_0 a1=NOTx15_1 a0=NOTx15_0 b1=a1 b0=a0 c1=b1 c0=b0 d1=NOTx15_1 d0=NOTx15_0 	o1=x16_1 o0=x16_0
+
+#eql x17
+.subckt eql2x a1=x16_1 a0=x16_0 b1=x15_1 b0=x15_0  o=x17
+
+#reg x12
+.subckt reg2 i1=x11_1 i2=x11_0 o1=x12_1 o0=x12_0 
+
+#reg x15
+.subckt reg2 i1=x14_1 i2=x14_0 o1=x15_1 o0=x15_0
+
+#eql x8
+.subckt eql2x a1=ZERO a0=ZERO b1=x18_1 b0=x18_0  o=x8
+
+#or x9 (uscita invalid)
+.subckt or i1=x0 i0=x8  o=invalid
+
+#searches
+.search mux2_2.blif
+.search mux2_1.blif
+.search mux1_2.blif
+.search or.blif
+.search reg2.blif
+
+
+.end
+
+ 
