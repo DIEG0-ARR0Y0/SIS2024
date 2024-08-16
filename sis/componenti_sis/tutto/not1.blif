@@ -1,8 +1,0 @@
-.model not1
-.inputs i
-.outputs o
-
-.names i o
-0 1
-
-.end

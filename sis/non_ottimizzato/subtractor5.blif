@@ -1,0 +1,17 @@
+.model subtractor5
+.inputs a4 a3 a2 a1 a0 b4 b3 b2 b1 b0
+.outputs o4 o3 o2 o1 o0
+
+.subckt const_0 o=ZERO
+.subckt const_1 o=ONE
+
+.subckt not5 i4=b4 i3=b3 i2=b2 i1=b1 i0=b0 o4=n4 o3=n3 o2=n2 o1=n1 o0=n0
+.subckt adder5 a4=a4 a3=a3 a2=a2 a1=a1 a0=a0 b4=n4 b3=n3 b2=n2 b1=n1 b0=n0 cin=ZERO o4=t4 o3=t3 o2=t2 o1=t1 o0=t0 cout=cout1
+.subckt adder5 a4=t4 a3=t3 a2=t2 a1=t1 a0=t0 b4=ZERO b3=ZERO b2=ZERO b1=ZERO b0=ONE cin=ZERO o4=o4 o3=o3 o2=o2 o1=o1 o0=o0 cout=cout2
+
+.search const_0.blif
+.search const_1.blif
+.search not5.blif
+.search adder5.blif
+
+.end

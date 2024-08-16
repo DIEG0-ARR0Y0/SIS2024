@@ -1,0 +1,22 @@
+.model game_count
+.inputs START INVALID
+.outputs played_4 played_3 played_2 played_1 played_0 
+
+.subckt const_0 o=ZERO
+.subckt const_1 o=ONE
+
+.subckt adder5 a4=ZERO a3=ZERO a2=ZERO a1=ZERO a0=ONE b4=reg_out4 b3=reg_out3 b2=reg_out2 b1=reg_out1 b0=reg_out0 cin=ZERO o4=add_out4 o3=add_out3 o2=add_out2 o1=add_out1 o0=add_out0 cout=cout
+.subckt mux1_5 s=INVALID a4=add_out4 a3=add_out3 a2=add_out2 a1=add_out1 a0=add_out0 b4=reg_out4 b3=reg_out3 b2=reg_out2 b1=reg_out1 b0=reg_out0 o4=mux1_out4 o3=mux1_out3 o2=mux1_out2 o1=mux1_out1 o0=mux1_out0
+.subckt mux1_5 s=START a4=mux1_out4 a3=mux1_out3 a2=mux1_out2 a1=mux1_out1 a0=mux1_out0 b4=ZERO b3=ZERO b2=ZERO b1=ZERO b0=ZERO o4=played_4 o3=played_3 o2=played_2 o1=played_1 o0=played_0
+.subckt reg5 i4=played_4 i3=played_3 i2=played_2 i1=played_1 i0=played_0 o4=reg_out4 o3=reg_out3 o2=reg_out2 o1=reg_out1 o0=reg_out0
+
+
+
+# .search section
+.search const_0.blif
+.search const_1.blif
+.search adder5.blif
+.search mux1_5.blif
+.search reg5.blif
+
+.end

@@ -1,0 +1,13 @@
+# read blif
+rl game_count.blif
+
+# simulation		# expected
+sim 1 0				# 0 0 0 0 0
+sim 1 0				# 0 0 0 0 0
+sim 0 0				# 0 0 0 0 1
+sim 0 0				# 0 0 0 1 0
+sim 0 0				# 0 0 0 1 1
+sim 0 1				# 0 0 0 1 1
+sim 0 1				# 0 0 0 1 1
+sim 1 0				# 0 0 0 0 0
+sim 0 0				# 0 0 0 0 1

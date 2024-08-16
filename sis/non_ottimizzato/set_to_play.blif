@@ -1,0 +1,21 @@
+.model set_to_play
+.inputs START P11 P10 P21 P20
+.outputs to_play4 to_play3 to_play2 to_play1 to_play0
+
+.subckt const_0 o=ZERO
+.subckt const_1 o=ONE
+
+.subckt adder5 a4=ZERO a3=P11 a2=P10 a1=P21 a0=P20 b4=ZERO b3=ZERO b2=ONE b1=ZERO b0=ZERO cin=ZERO o4=add_out4 o3=add_out3 o2=add_out2 o1=add_out1 o0=add_out0 cout=add_cout
+.subckt mux1_5 s=START a4=reg_out4 a3=reg_out3 a2=reg_out2 a1=reg_out1 a0=reg_out0 b4=add_out4 b3=add_out3 b2=add_out2 b1=add_out1 b0=add_out0 o4=to_play4 o3=to_play3 o2=to_play2 o1=to_play1 o0=to_play0
+.subckt reg5 i4=to_play4 i3=to_play3 i2=to_play2 i1=to_play1 i0=to_play0 o4=reg_out4 o3=reg_out3 o2=reg_out2 o1=reg_out1 o0=reg_out0
+
+
+
+# .search section
+.search const_0.blif
+.search const_1.blif
+.search adder5.blif
+.search mux1_5.blif
+.search reg5.blif
+
+.end
