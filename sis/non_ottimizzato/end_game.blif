@@ -1,5 +1,5 @@
 .model end_game
-.inputs START PLAYED_4 PLAYED_3 PLAYED_2 PLAYED_1 PLAYED_0 TO_PLAY4 TO_PLAY3 TO_PLAY2 TO_PLAY1 TO_PLAY0 ADV_4 ADV_3 ADV_2 ADV_1 ADV_0
+.inputs PLAYED_4 PLAYED_3 PLAYED_2 PLAYED_1 PLAYED_0 TO_PLAY4 TO_PLAY3 TO_PLAY2 TO_PLAY1 TO_PLAY0 ADV_4 ADV_3 ADV_2 ADV_1 ADV_0
 .outputs stop
 
 .subckt const_0 o=ZERO
@@ -10,8 +10,8 @@
 .subckt grt5 a4=ADV_4 a3=ADV_3 a2=ADV_2 a1=ADV_1 a0=ADV_0 b4=ZERO b3=ZERO b2=ZERO b1=ZERO b0=ONE o=grt2_out
 
 .subckt and i1=grt1_out i0=grt2_out o=and_out
-.subckt or i1=eql_out i0=and_out o=or_out
-.subckt and i1=START i0=or_out o=stop
+.subckt or i1=eql_out i0=and_out o=stop
+
 
 
 # .search section
@@ -21,5 +21,6 @@
 .search eql5.blif
 .search and.blif
 .search or.blif
+.search not1.blif
 
 .end

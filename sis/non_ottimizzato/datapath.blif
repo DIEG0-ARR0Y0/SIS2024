@@ -6,7 +6,7 @@
 .subckt match_winner START=START P11=P11 P10=P10 P21=P21 P20=P20 win1=win1 win2=win2 invalid=invalid
 .subckt game_count START=START INVALID=invalid played_4=game_count_out4 played_3=game_count_out3 played_2=game_count_out2 played_1=game_count_out1 played_0=game_count_out0
 .subckt game_adv START=START INVALID=invalid WIN1=win1 WIN2=win2 adv1=adv1 adv2=adv2 adv_4=game_adv_out4 adv_3=game_adv_out3 adv_2=game_adv_out2 adv_1=game_adv_out1 adv_0=game_adv_out0
-.subckt end_game START=START PLAYED_4=game_count_out4 PLAYED_3=game_count_out3 PLAYED_2=game_count_out2 PLAYED_1=game_count_out1 PLAYED_0=game_count_out0 TO_PLAY4=set_to_play_out4 TO_PLAY3=set_to_play_out3 TO_PLAY2=set_to_play_out2 TO_PLAY1=set_to_play_out1 TO_PLAY0=set_to_play_out0 ADV_4=game_adv_out4 ADV_3=game_adv_out3 ADV_2=game_adv_out2 ADV_1=game_adv_out1 ADV_0=game_adv_out0 stop=stop
+.subckt end_game PLAYED_4=game_count_out4 PLAYED_3=game_count_out3 PLAYED_2=game_count_out2 PLAYED_1=game_count_out1 PLAYED_0=game_count_out0 TO_PLAY4=set_to_play_out4 TO_PLAY3=set_to_play_out3 TO_PLAY2=set_to_play_out2 TO_PLAY1=set_to_play_out1 TO_PLAY0=set_to_play_out0 ADV_4=game_adv_out4 ADV_3=game_adv_out3 ADV_2=game_adv_out2 ADV_1=game_adv_out1 ADV_0=game_adv_out0 stop=stop
 
 .search set_to_play.blif
 .search match_winner.blif
