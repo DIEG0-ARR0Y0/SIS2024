@@ -1,0 +1,11 @@
+.model fsmd
+.inputs P11 P10 P21 P20 START
+.outputs MATCH_STATE1 MATCH_STATE0 GAME_STATE1 GAME_STATE0
+
+.subckt datapath START=START P11=P11 P10=P10 P21=P21 P20=P20 win1=dp_win1 win2=dp_win2 invalid=dp_invalid adv1=dp_adv1 adv2=dp_adv2 stop=dp_stop
+.subckt fsm_minimized WIN1=dp_win1 WIN2=dp_win2 INVALID=dp_invalid ADV1=dp_adv1 ADV2=dp_adv2 STOP=dp_stop START=START match_state1=MATCH_STATE1 match_state0=MATCH_STATE0 game_state1=GAME_STATE1 game_state0=GAME_STATE0
+
+.search datapath.blif
+.search fsm_minimized.blif
+
+.end

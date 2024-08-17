@@ -1,0 +1,264 @@
+.model fsmd
+.inputs P11 P10 P21 P20 START
+.outputs MATCH_STATE1 MATCH_STATE0 GAME_STATE1 GAME_STATE0
+.latch    [15] LatchOut_v7   1
+.latch    [16] LatchOut_v8   1
+.latch    game_count_out4 reg_out4 re NIL 0
+.latch    game_count_out3 reg_out3 re NIL 0
+.latch    game_count_out2 reg_out2 re NIL 0
+.latch    game_count_out1 reg_out1 re NIL 0
+.latch    game_count_out0 reg_out0 re NIL 0
+.latch    left_mux2_out1 last_winner1 re NIL 0
+.latch    left_mux2_out0 last_winner0 re NIL 0
+.latch    middle_mux2_out1 last_winner_move1 re NIL 0
+.latch    middle_mux2_out0 last_winner_move0 re NIL 0
+.latch    set_to_play_out4 [375] re NIL 0
+.latch    set_to_play_out3 [377] re NIL 0
+.latch    set_to_play_out2 [379] re NIL 0
+.latch    set_to_play_out1 [381] re NIL 0
+.latch    set_to_play_out0 [383] re NIL 0
+.latch    mux3_p1_out4 reg1_out4 re NIL 0
+.latch    mux3_p1_out3 reg1_out3 re NIL 0
+.latch    mux3_p1_out2 reg1_out2 re NIL 0
+.latch    mux3_p1_out1 reg1_out1 re NIL 0
+.latch    mux3_p1_out0 reg1_out0 re NIL 0
+.latch    mux3_p2_out4 reg2_out4 re NIL 0
+.latch    mux3_p2_out3 reg2_out3 re NIL 0
+.latch    mux3_p2_out2 reg2_out2 re NIL 0
+.latch    mux3_p2_out1 reg2_out1 re NIL 0
+.latch    mux3_p2_out0 reg2_out0 re NIL 0
+.names [938] [26894] [26896] MATCH_STATE1
+111 1
+.names [938] [26894] [26897] MATCH_STATE0
+111 1
+.names dp_adv1 [4026] GAME_STATE1
+01 1
+.names dp_adv1 [4026] [248] [251] [254] [257] [985] GAME_STATE0
+11----- 1
+-111111 1
+.names tmp_matchwinner1 tmp_matchwinner0 last_winner_move1 right_mux_out1 \
+last_winner_move0 right_mux_out0 dp_invalid
+00---- 1
+--1111 1
+--0011 1
+--1100 1
+--0000 1
+.names mux3_p1_out4 mux3_p1_out3 mux3_p1_out2 mux3_p1_out1 mux3_p1_out0 \
+mux3_p2_out0 [248] [251] [254] [257] dp_adv1
+1-----0--- 1
+-1----10-- 1
+--1---110- 1
+---1--1110 1
+----101111 1
+.names LatchOut_v8 set_to_play_out1 set_to_play_out0 game_count_out1 \
+game_count_out0 [247] [250] [253] [256] [985] [992] [26889] [26890] [26906] \
+[4026]
+-----10------1 1
+------10-----1 1
+-------10----1 1
+-----0---1---1 1
+--------10---1 1
+01111-----111- 1
+00101-----111- 1
+01010-----111- 1
+00000-----111- 1
+.names START [15]
+0 1
+.names START [4026] [26894] [16]
+1-- 1
+-1- 1
+--0 1
+.names START mux3_p1_out3 reg1_out4 reg1_out3 mux3_p1_out4
+-11- 1
+0-10 1
+0001 1
+.names START mux3_p1_out2 reg1_out3 reg1_out2 mux3_p1_out3
+-11- 1
+0-10 1
+0001 1
+.names START mux3_p1_out1 reg1_out2 reg1_out1 [26904] mux3_p1_out2
+-11-- 1
+--1-1 1
+0001- 1
+.names START reg1_out1 [26904] mux3_p1_out1
+-11 1
+000 1
+.names START reg1_out0 [938] [26896] [26909] mux3_p1_out0
+-1--1 1
+01-1- 1
+-010- 1
+.names P11 P10 START [375] set_to_play_out4
+--01 1
+111- 1
+.names P11 P10 START [377] set_to_play_out3
+--01 1
+011- 1
+101- 1
+.names P10 START [379] set_to_play_out2
+01- 1
+-01 1
+.names P21 START [381] set_to_play_out1
+11- 1
+-01 1
+.names P20 START [383] set_to_play_out0
+11- 1
+-01 1
+.names START game_count_out3 reg_out4 reg_out3 game_count_out4
+-11- 1
+0-10 1
+0001 1
+.names START game_count_out2 reg_out3 reg_out2 game_count_out3
+-11- 1
+0-10 1
+0001 1
+.names START game_count_out1 reg_out2 reg_out1 reg_out0 [938] game_count_out2
+-11--- 1
+0-10-- 1
+--0111 1
+.names START game_count_out0 reg_out1 reg_out0 game_count_out1
+-11- 1
+0-10 1
+0001 1
+.names reg_out0 [938] [26909] game_count_out0
+01- 1
+1-1 1
+.names P11 P10 P21 P20 tmp_matchwinner0 tmp_matchwinner1
+101-- 1
+1-11- 1
+-101- 1
+-11-0 1
+.names P11 P10 P21 P20 [26908] tmp_matchwinner0
+1-10- 1
+-1-11 1
+-0-10 1
+.names P11 P21 last_winner_move1 last_winner1 last_winner0 [26899] \
+right_mux_out1
+--0--1 1
+1--01- 1
+-1-10- 1
+.names P10 P20 last_winner_move0 last_winner1 last_winner0 [26899] \
+right_mux_out0
+--0--1 1
+1--01- 1
+-1-10- 1
+.names last_winner1 [26909] [26914] left_mux2_out1
+--1 1
+11- 1
+.names START last_winner0 [938] [26913] left_mux2_out0
+---1 1
+010- 1
+.names P11 P21 START last_winner_move1 [26898] [26913] [26914] \
+middle_mux2_out1
+1----1- 1
+-1----1 1
+--011-- 1
+.names P10 P20 START last_winner_move0 [26898] [26913] [26914] \
+middle_mux2_out0
+1----1- 1
+-1----1 1
+--011-- 1
+.names START mux3_p2_out3 reg2_out4 reg2_out3 mux3_p2_out4
+-11- 1
+0-10 1
+0001 1
+.names START mux3_p2_out2 reg2_out3 reg2_out2 mux3_p2_out3
+-11- 1
+0-10 1
+0001 1
+.names START mux3_p2_out1 reg2_out2 reg2_out1 [26905] mux3_p2_out2
+-11-- 1
+--1-1 1
+0001- 1
+.names START reg2_out1 [26905] mux3_p2_out1
+-11 1
+000 1
+.names START reg2_out0 [938] [26897] [26909] mux3_p2_out0
+-1--1 1
+01-1- 1
+-010- 1
+.names [248] [26900] [247]
+11 1
+00 1
+.names [251] [26901] [250]
+11 1
+00 1
+.names [254] [26902] [253]
+11 1
+00 1
+.names [257] [26911] [256]
+11 1
+00 1
+.names mux3_p1_out4 mux3_p2_out4 [248]
+11 1
+00 1
+.names mux3_p1_out3 mux3_p2_out3 [251]
+11 1
+00 1
+.names mux3_p1_out2 mux3_p2_out2 [254]
+11 1
+00 1
+.names mux3_p1_out1 mux3_p2_out1 [257]
+11 1
+00 1
+.names START dp_invalid [938]
+00 1
+.names dp_adv1 mux3_p1_out0 mux3_p2_out0 [985]
+1-- 1
+-11 1
+-00 1
+.names set_to_play_out4 game_count_out4 [992]
+11 1
+00 1
+.names set_to_play_out3 game_count_out3 [26889]
+11 1
+00 1
+.names set_to_play_out2 game_count_out2 [26890]
+11 1
+00 1
+.names LatchOut_v7 LatchOut_v8 [26894]
+0- 1
+-0 1
+.names tmp_matchwinner1 tmp_matchwinner0 [26896]
+1- 1
+-0 1
+.names tmp_matchwinner1 tmp_matchwinner0 [26897]
+0- 1
+-1 1
+.names dp_invalid tmp_matchwinner1 tmp_matchwinner0 [26898]
+1-- 1
+-11 1
+.names last_winner1 last_winner0 [26899]
+11 1
+00 1
+.names mux3_p2_out3 [250] [251] [26900]
+-11 1
+0-0 1
+.names mux3_p2_out2 [253] [254] [26901]
+-11 1
+0-0 1
+.names mux3_p2_out1 [256] [257] [26902]
+-11 1
+0-0 1
+.names START mux3_p1_out0 reg1_out0 [26904]
+-1- 1
+0-0 1
+.names START mux3_p2_out0 reg2_out0 [26905]
+-1- 1
+0-0 1
+.names LatchOut_v8 game_count_out4 game_count_out3 game_count_out2 [26906]
+01-- 1
+0-1- 1
+0--1 1
+.names P11 P21 [26908]
+0- 1
+-1 1
+.names START dp_invalid [26909]
+01 1
+.names mux3_p1_out0 mux3_p2_out0 [26911]
+1- 1
+-0 1
+.names tmp_matchwinner1 [938] [26913]
+01 1
+.names tmp_matchwinner0 [938] [26914]
+01 1
+.end

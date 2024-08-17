@@ -1,6 +1,6 @@
 .model fsm
-.inputs WIN1 WIN2 INVALID ADV1 ADV2 END START
-.outputs MANCHE_STATUS1 MANCHE_STATUS0 GAME_STATUS1 GAME_STATUS0
+.inputs WIN1 WIN2 INVALID ADV1 ADV2 STOP START
+.outputs match_state1 match_state0 game_state1 game_state0
 
 .start_kiss
 .i 7

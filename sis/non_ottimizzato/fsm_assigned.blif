@@ -1,9 +1,9 @@
 .model fsm
-.inputs WIN1 WIN2 INVALID ADV1 ADV2 END START
-.outputs MANCHE_STATUS1 MANCHE_STATUS0 GAME_STATUS1 GAME_STATUS0
-.latch    [41] LatchOut_v7   1
-.latch    [42] LatchOut_v8   1
-.latch    [43] LatchOut_v9   0
+.inputs WIN1 WIN2 INVALID ADV1 ADV2 STOP START
+.outputs match_state1 match_state0 game_state1 game_state0
+.latch    [4] LatchOut_v7   1
+.latch    [5] LatchOut_v8   1
+.latch    [6] LatchOut_v9   0
 .start_kiss
 .i 7
 .o 4
@@ -33,7 +33,7 @@
 0000010 W1 S 1111
 --11-10 W1 S 0001
 --10110 W1 S 0010
---10010 W1 S 0000
+--10010 W1 S 0011
 ------1 W2 I 0000
 1-0--00 W2 W1 0100
 010--00 W2 W2 1000
@@ -50,7 +50,7 @@
 0000010 W2 S 1111
 --11-10 W2 S 0001
 --10110 W2 S 0010
---10010 W2 S 0000
+--10010 W2 S 0011
 ------1 D I 0000
 1-0--00 D W1 0100
 010--00 D W2 1000
@@ -67,7 +67,7 @@
 0000010 D S 1111
 --11-10 D S 0001
 --10110 D S 0010
---10010 D S 0000
+--10010 D S 0011
 ------1 INV I 0000
 1-0--00 INV W1 0100
 010--00 INV W2 1000
@@ -84,7 +84,7 @@
 0000010 INV S 1111
 --11-10 INV S 0001
 --10110 INV S 0010
---10010 INV S 0000
+--10010 INV S 0011
 .end_kiss
 .latch_order LatchOut_v7 LatchOut_v8 LatchOut_v9
 .code S 110
@@ -93,76 +93,79 @@
 .code W2 111
 .code D 010
 .code INV 000
-.names WIN1 WIN2 INVALID END START LatchOut_v7 LatchOut_v8 LatchOut_v9 [41]
-----1--- 1
----10-1- 1
----10--0 1
-1-0-00-- 1
-1-0-0-0- 1
-1-0-0--1 1
+.names WIN1 WIN2 INVALID ADV1 STOP START LatchOut_v7 LatchOut_v8 LatchOut_v9 \
+[4]
+-----1--- 1
+1-0--00-- 1
+---1100-- 1
+---0100-- 1
+1-0--0-0- 1
+1-0--0--1 1
+-----0110 1
+010-0-0-- 1
+010-0--0- 1
+010-0---1 1
+---110-11 1
+---010-11 1
+010----01 1
+---110-00 1
+---010-00 1
+.names WIN1 INVALID ADV1 STOP START LatchOut_v7 LatchOut_v8 LatchOut_v9 [5]
+00--00-- 1
+--1100-- 1
+--0100-- 1
+00--0-0- 1
+00--0--1 1
 ----0110 1
-0100-0-- 1
-0100--0- 1
-0100---1 1
-010---01 1
-.names WIN1 INVALID END START LatchOut_v7 LatchOut_v8 LatchOut_v9 [42]
---10-1- 1
---10--0 1
-00-00-- 1
-00-0-0- 1
-00-0--1 1
----0110 1
-.names WIN1 WIN2 INVALID END START LatchOut_v7 LatchOut_v8 LatchOut_v9 [43]
+--110-11 1
+--010-11 1
+--110-00 1
+--010-00 1
+.names WIN1 WIN2 INVALID STOP START LatchOut_v7 LatchOut_v8 LatchOut_v9 [6]
 ----1--- 1
 0100-0-- 1
 0100--0- 1
 0100---1 1
 010---01 1
-.names WIN1 INVALID START LatchOut_v7 LatchOut_v8 LatchOut_v9 MANCHE_STATUS1
+.names WIN1 INVALID START LatchOut_v7 LatchOut_v8 LatchOut_v9 match_state1
 0000-- 1
 000-0- 1
 000--1 1
 .names WIN1 WIN2 INVALID START LatchOut_v7 LatchOut_v8 LatchOut_v9 \
-MANCHE_STATUS0
+match_state0
 1-000-- 1
 -0000-- 1
 1-00-0- 1
 -000-0- 1
 1-00--1 1
 -000--1 1
-.names INVALID ADV1 ADV2 END START LatchOut_v7 LatchOut_v8 LatchOut_v9 \
-GAME_STATUS1
--01100-- 1
-000100-- 1
--0110-11 1
--0110-00 1
-00010-11 1
-00010-00 1
-.names INVALID ADV1 ADV2 END START LatchOut_v7 LatchOut_v8 LatchOut_v9 \
-GAME_STATUS0
--1-100-- 1
--1-10-11 1
--1-10-00 1
-000100-- 1
-00010-11 1
-00010-00 1
+.names ADV1 STOP START LatchOut_v7 LatchOut_v8 LatchOut_v9 game_state1
+0100-- 1
+010-11 1
+010-00 1
+.names ADV1 ADV2 STOP START LatchOut_v7 LatchOut_v8 LatchOut_v9 game_state0
+1-100-- 1
+-0100-- 1
+1-10-11 1
+-010-11 1
+1-10-00 1
+-010-00 1
 .exdc 
-.inputs WIN1 WIN2 INVALID ADV1 ADV2 END START LatchOut_v7 LatchOut_v8 \
+.inputs WIN1 WIN2 INVALID ADV1 ADV2 STOP START LatchOut_v7 LatchOut_v8 \
 LatchOut_v9
-.outputs [41] [42] [43] MANCHE_STATUS1 MANCHE_STATUS0 GAME_STATUS1 \
-GAME_STATUS0
-.names LatchOut_v7 LatchOut_v9 [41]
+.outputs [4] [5] [6] match_state1 match_state0 game_state1 game_state0
+.names LatchOut_v7 LatchOut_v9 [4]
 01 1
-.names LatchOut_v7 LatchOut_v9 [42]
+.names LatchOut_v7 LatchOut_v9 [5]
 01 1
-.names LatchOut_v7 LatchOut_v9 [43]
+.names LatchOut_v7 LatchOut_v9 [6]
 01 1
-.names LatchOut_v7 LatchOut_v9 MANCHE_STATUS1
+.names LatchOut_v7 LatchOut_v9 match_state1
 01 1
-.names LatchOut_v7 LatchOut_v9 MANCHE_STATUS0
+.names LatchOut_v7 LatchOut_v9 match_state0
 01 1
-.names LatchOut_v7 LatchOut_v9 GAME_STATUS1
+.names LatchOut_v7 LatchOut_v9 game_state1
 01 1
-.names LatchOut_v7 LatchOut_v9 GAME_STATUS0
+.names LatchOut_v7 LatchOut_v9 game_state0
 01 1
 .end
