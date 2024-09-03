@@ -1,10 +1,3 @@
-/* NOTE:
-
-	- rivedere struttura switch-case per decretare il vincitore del match
-	- completare struttura switch-case
-
-*/
-
 module MorraCienese(
 	
 	input clk,
@@ -53,7 +46,7 @@ module MorraCienese(
 			if((ADV > 4'b0010 && ADV < 4'b0110) || PLAYED != TO_PLAY) begin
 
 				// IF per determinare se il round e' nulla
-				if(PREV_ROUND_WINNER == b'01 && PREV_WINNING_MOVE == P1 || PREV_ROUND_WINNER == b'10 && PREV_WINNING_MOVE == P2 || {P1, P2} == 4'b0000 || {P1, P2} == 4'b1000 || {P1, P2} == 4'b0100 || {P1, P2} == 4'b0010 || {P1, P2} == 4'b0001) begin
+				if({PREV_ROUND_WINNER, PREV_WINNING_MOVE} == {2'b01, P1} || {PREV_ROUND_WINNER, PREV_WINNING_MOVE} == {2'b10, P2} || {P1, P2} == 4'b0000 || {P1, P2} == 4'b1000 || {P1, P2} == 4'b0100 || {P1, P2} == 4'b0010 || {P1, P2} == 4'b0001) begin
 					CURRENT_ROUND_WINNER = 2'b00;
 					PREV_ROUND_WINNER = PREV_ROUND_WINNER;
 					PREV_WINNING_MOVE = PREV_WINNING_MOVE;
@@ -62,25 +55,60 @@ module MorraCienese(
 				end else begin
 					case({P1, P2}) begin
 						// vince 1				
-						4'0111, 4'1001, 4'1110: begin
-							CURRENT_ROUND_WINNER = 2b'01;
-							PREV_ROUND_WINNER = 2b'01;
-							PREV_WINNING_MOVE = P1;
+						4'b0111, 4'b1001, 4'b1110: begin
+							CURRENT_ROUND_WINNER = 2'b01;
+							PREV_ROUND_WINNER = 2'b01;
+							PREV_WINNING_MOVE = {P1};
 							ADV = ADV + 1;
 						end
 						// vince 2
-						4'1101, 4'0110, 4'1011: begin
-							CURRENT_ROUND_WINNER = 2b'10;
-							PREV_ROUND_WINNER = 2b'10;
+						4'b1101, 4'b0110, 4'b1011: begin
+							CURRENT_ROUND_WINNER = 2'b10;
+							PREV_ROUND_WINNER = 2'b10;
 							PREV_WINNING_MOVE = {P2};
 							ADV = ADV - 1;
 						end
 						// pari
-						4'b0101, 4'b1010, 4'1111: begin
-							CURRENT_ROUND_WINNER = b'11;
-							PREV_ROUND_WINNER = 2b'00;
-							PREV_WINNING_MOVE = 2b'00;
+						4'b0101, 4'b1010, 4'b1111: begin
+							CURRENT_ROUND_WINNER = 2'b11;
+							PREV_ROUND_WINNER = 2'b00;
+							PREV_WINNING_MOVE = 2'b00;
 						end
-				endcase
-				PLAYED = PLAYED + 1;
-			end
+					endcase
+					PLAYED = PLAYED + 1;
+				end
+		end
+	end
+
+
+	always @(posedge clk) begin : FSM
+		if(START) begin
+			NEXT_STATE == 3'b000;
+			ROUND == 2'b00;
+			GAME == 2'b00;
+		end else begin
+			case(CURRENT_STATE)
+				3'b000: begin
+					ROUND = 2'b00;
+					GAME = 2'b00;
+				end
+				3'b001: begin
+					...
+				end
+				3'b010: begin
+					...
+				end
+				3'b011: begin
+					...
+				end
+				3'b100: begin
+					...
+				end
+				3'b101: begin
+					...
+				end
+			endcase
+		end
+	end
+
+endmodule
