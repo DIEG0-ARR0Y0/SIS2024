@@ -39,11 +39,11 @@ module MorraCienese(
 			PREV_WINNING_MOVE = 2'b00;
 			PLAYED = 5'b00000;
 			TO_PLAY = {P1, P2} + 4;
-			ADV = 4'b01000
+			ADV = 4'b0100
 		end else begin
 
 			// IF per determinare se ci sono le condizioni per disputare il round
-			if((ADV > 4'b0010 && ADV < 4'b0110) || PLAYED != TO_PLAY) begin
+			if((ADV > 4'b0010 && ADV < 4'b0110) && PLAYED < TO_PLAY) begin
 
 				// IF per determinare se il round e' nulla
 				if({PREV_ROUND_WINNER, PREV_WINNING_MOVE} == {2'b01, P1} || {PREV_ROUND_WINNER, PREV_WINNING_MOVE} == {2'b10, P2} || {P1, P2} == 4'b0000 || {P1, P2} == 4'b1000 || {P1, P2} == 4'b0100 || {P1, P2} == 4'b0010 || {P1, P2} == 4'b0001) begin
@@ -86,28 +86,31 @@ module MorraCienese(
 			NEXT_STATE == 3'b000;
 			ROUND == 2'b00;
 			GAME == 2'b00;
-		end else begin
-			case(CURRENT_STATE)
-				3'b000: begin
-					ROUND = 2'b00;
-					GAME = 2'b00;
+		end else if((ADV > 4'b0010 && ADV < 4'b0110) && PLAYED < TO_PLAY) begin
+			GAME = 2'b00;
+			ROUND = CURRENT_ROUND_WINNER;
+			case(ROUND) begin
+				2'b00: begin
+					NEXT_STATE = 3'b101		// SET CODE FOR EACH NEXT STATE
 				end
-				3'b001: begin
-					...
+				2'b01: begin
+					NEXT_STATE = 3'b010
 				end
-				3'b010: begin
-					...
+				2'b10: begin
+					NEXT_STATE = 3'b011
 				end
-				3'b011: begin
-					...
-				end
-				3'b100: begin
-					...
-				end
-				3'b101: begin
-					...
-				end
+				2'b11: begin
+					NEXT_STATE = 3'b100
 			endcase
+		end else begin
+			if(ADV <= 4'b0011) begin
+				GAME == 2'b01;
+			end else if(ADV >= 4'b0101) begin
+				GAME == 2'b10;
+			end else if(ADV == 4'b0100) begin
+				GAME == 2'b11;
+			end
+			NEXT_STATE = 3'b000;
 		end
 	end
 
