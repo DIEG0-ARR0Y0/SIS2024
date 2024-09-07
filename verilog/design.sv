@@ -91,7 +91,7 @@ module MorraCienese(
 			ROUND = CURRENT_ROUND_WINNER;
 			case(ROUND) begin
 				2'b00: begin
-					NEXT_STATE = 3'b101		// SET CODE FOR EACH NEXT STATE
+					NEXT_STATE = 3'b101
 				end
 				2'b01: begin
 					NEXT_STATE = 3'b010
