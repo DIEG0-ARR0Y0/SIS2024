@@ -1,4 +1,6 @@
 DA RIVEDERE:
+
+DATPATH:
 - moduli: ingressi e uscite (tipo:  module modulename(input [x:0] in, output [x:0] out);
                                     begin
                                     ...
@@ -10,3 +12,7 @@ DA RIVEDERE:
 
 - to_play da rivedere i bit
 - to_play da rivedere il reset nello stato START e imposta allo stato INIT
+
+
+FSM:
+- manca il ROUND all'ultimo else in teoria
