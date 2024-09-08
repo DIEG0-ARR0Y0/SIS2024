@@ -46,7 +46,7 @@ module MorraCienese(
 			if((ADV > 4'b0010 && ADV < 4'b0110) && PLAYED < TO_PLAY) begin
 
 				// IF per determinare se il round e' nulla
-				if({PREV_ROUND_WINNER, PREV_WINNING_MOVE} == {2'b01, P1} || {PREV_ROUND_WINNER, PREV_WINNING_MOVE} == {2'b10, P2} || {P1, P2} == 4'b0000 || {P1, P2} == 4'b1000 || {P1, P2} == 4'b0100 || {P1, P2} == 4'b0010 || {P1, P2} == 4'b0001) begin
+				if({PREV_ROUND_WINNER, PREV_WINNING_MOVE} == {2'b01, P1} || {PREV_ROUND_WINNER, PREV_WINNING_MOVE} == {2'b10, P2} || P1 == 2'b00 || P2 == 2'b00) begin
 					CURRENT_ROUND_WINNER = 2'b00;
 					PREV_ROUND_WINNER = PREV_ROUND_WINNER;
 					PREV_WINNING_MOVE = PREV_WINNING_MOVE;
