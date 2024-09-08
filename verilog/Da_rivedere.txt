@@ -7,3 +7,6 @@ DA RIVEDERE:
 
 - blocchi sequenziali always e initial
 - boh, sto progetto e' na merda
+
+- to_play da rivedere i bit
+- to_play da rivedere il reset nello stato START e imposta allo stato INIT
