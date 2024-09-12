@@ -25,7 +25,7 @@ module MorraCienese(
 
 
 	always @(posedege clk) begin : UPDATE_STATE
-		STATE = NEXT_STATE;
+		CURRENT_STATE = NEXT_STATE;
 	end
 
 
@@ -41,6 +41,10 @@ module MorraCienese(
 			TO_PLAY = {P1, P2} + 4;
 			ADV = 4'b0100
 		end else begin
+			// ......................................
+			if CURRENT_STATE == 3'b001:
+				TO_PLAY = {P1, P2} + 4;
+			end
 
 			// IF per determinare se ci sono le condizioni per disputare il round
 			if((ADV > 4'b0010 && ADV < 4'b0110) && PLAYED < TO_PLAY) begin
@@ -83,35 +87,41 @@ module MorraCienese(
 
 	always @(posedge clk) begin : FSM
 		if(START) begin
-			NEXT_STATE == 3'b000;
-			ROUND == 2'b00;
-			GAME == 2'b00;
-		end else if((ADV > 4'b0010 && ADV < 4'b0110) && PLAYED < TO_PLAY) begin
+			NEXT_STATE = 3'b000;
+			ROUND = 2'b00;
 			GAME = 2'b00;
-			ROUND = CURRENT_ROUND_WINNER;
-			case(ROUND) begin
-				2'b00: begin
-					NEXT_STATE = 3'b101
-				end
-				2'b01: begin
-					NEXT_STATE = 3'b010
-				end
-				2'b10: begin
-					NEXT_STATE = 3'b011
-				end
-				2'b11: begin
-					NEXT_STATE = 3'b100
-			endcase
+
+		end else if(!START && CURRENT_STATE == 3'b000) begin
+			NEXT_STATE = 3'b001;
+			ROUND = 2'b00;
+			GAME = 2'b00;
+
+		end else if(!START && CURRENT_STATE >= 3'b001):
+			if(((ADV > 4'b0010 && ADV < 4'b0110) && PLAYED < TO_PLAY) || PLAYED < 4) begin
+				GAME = 2'b00;
+				ROUND = CURRENT_ROUND_WINNER;
+				case(ROUND) begin
+					2'b00: begin
+						NEXT_STATE = 3'b101
+					end
+					2'b01: begin
+						NEXT_STATE = 3'b010
+					end
+					2'b10: begin
+						NEXT_STATE = 3'b011
+					end
+					2'b11: begin
+						NEXT_STATE = 3'b100
+				endcase
+			end
 		end else begin
-			if(ADV <= 4'b0011) begin
+			if(ADV < 4'b0100) begin
 				GAME == 2'b01;
-			end else if(ADV >= 4'b0101) begin
+			end else if(ADV > 4'b0100) begin
 				GAME == 2'b10;
 			end else if(ADV == 4'b0100) begin
 				GAME == 2'b11;
 			end
 			NEXT_STATE = 3'b000;
 		end
-	end
-
-endmodule
+	endmodule
