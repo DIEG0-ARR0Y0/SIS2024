@@ -1,18 +1,14 @@
 DA RIVEDERE:
 
 DATPATH:
-- moduli: ingressi e uscite (tipo:  module modulename(input [x:0] in, output [x:0] out);
-                                    begin
-                                    ...
-                                    emdmodule
-                            )
+- moduli: ingressi e uscite [V]
+- blocchi sequenziali always e initial [V]
 
-- blocchi sequenziali always e initial
-- boh, sto progetto e' na merda
+- boh, sto progetto e' na merda [V]
 
-- to_play da rivedere i bit
-- to_play da rivedere il reset nello stato START e imposta allo stato INIT
+- to_play da rivedere i bit [V]
+- to_play da rivedere il reset nello stato START e imposta allo stato INIT [V]
 
 
 FSM:
-- manca il ROUND all'ultimo else in teoria
+- manca il ROUND all'ultimo else in teoria [V]
