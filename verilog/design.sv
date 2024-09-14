@@ -39,10 +39,10 @@ module MorraCienese(
 			PREV_WINNING_MOVE = 2'b00;
 			PLAYED = 5'b00000;
 			TO_PLAY = {P1, P2} + 4;
-			ADV = 4'b0100
+			ADV = 4'b0100;
 		end else begin
 			// ......................................
-			if CURRENT_STATE == 3'b001:
+			if CURRENT_STATE == 3'b001 begin
 				TO_PLAY = {P1, P2} + 4;
 			end
 
@@ -81,6 +81,7 @@ module MorraCienese(
 					endcase
 					PLAYED = PLAYED + 1;
 				end
+			end
 		end
 	end
 
