@@ -54,38 +54,38 @@ module testbench;
         clk = 1'b0;
 
         // test 1: start alzato, decido n manche
-        INIZIA = 1'b1;  
-        PRIMO = 2'b01;  // nmanche=1+2=3 (da aggiungere alle 4 manche di base?) 
-        SECONDO = 2'b10; 
+        START = 1'b1;  
+        P1 = 2'b01;  // nmanche=1+2=3 (da aggiungere alle 4 manche di base?) 
+        P2 = 2'b10; 
         Simulate();			
         #20;
         Output();   
 
         //test 2: 
-        INIZIA = 1'b0;  //setto start a 0 senza poi settarlo nuovamente se non cambia
-        PRIMO = 2'b00;  // no mossa
-        SECONDO = 2'b01; // sasso
+        START = 1'b0;  //setto start a 0 senza poi settarlo nuovamente se non cambia
+        P1 = 2'b00;  // no mossa
+        P2 = 2'b01; // sasso
         Simulate();			
         #20;
         Output();
 
         //test 3: 
-        PRIMO = 2'b01;  
-        SECONDO = 2'b11; 
+        P1 = 2'b01;  
+        P2 = 2'b11; 
         Simulate();			
         #20;
         Output();
 
         //test 4: 
-        PRIMO = 2'b10;  
-        SECONDO = 2'b00; 
+        P1 = 2'b10;  
+        P2 = 2'b00; 
         Simulate();			
         #20;
         Output();
 
         //test 5: 
-        PRIMO = 2'b11;  
-        SECONDO = 2'b11; 
+        P1 = 2'b11;  
+        P2 = 2'b11; 
         Simulate();			
         #20;
         Output();
@@ -98,4 +98,3 @@ module testbench;
 
     end    
 endmodule
-    
