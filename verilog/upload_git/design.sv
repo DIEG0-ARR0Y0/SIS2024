@@ -32,20 +32,20 @@ module MorraCinese(
 	// datapath
 
 	always @(posedge clk) begin : DATAPATH
-		if(START) begin
-			CURRENT_STATE = 3'b000;
+		if(START || CURRENT_STATE == 3'b000) begin
+//			CURRENT_STATE = 3'b000;
 			CURRENT_ROUND_WINNER = 2'b00;
 			PREV_ROUND_WINNER = 2'b00;
 			PREV_WINNING_MOVE = 2'b00;
 			PLAYED = 5'b00000;
-			TO_PLAY = {P1, P2} + 4;
 			ADV = 4'b0100;
-		end else begin
-			// ......................................
-			if(CURRENT_STATE == 3'b001) begin
+			if(START) begin
 				TO_PLAY = {P1, P2} + 4;
 			end
-
+		end else begin
+/*			if(CURRENT_STATE == 3'b001) begin
+				TO_PLAY = {P1, P2} + 4;
+*/
 			// IF per determinare se ci sono le condizioni per disputare il round
 			if((ADV > 4'b0010 && ADV < 4'b0110) && PLAYED < TO_PLAY) begin
 
@@ -89,12 +89,12 @@ module MorraCinese(
 
 	always @(posedge clk) begin : FSM
 		if(START) begin
-			NEXT_STATE = 3'b000;
+			NEXT_STATE = 3'b001;
 			ROUND = 2'b00;
 			GAME = 2'b00;
 
 		end else if(!START && CURRENT_STATE == 3'b000) begin
-			NEXT_STATE = 3'b001;
+			NEXT_STATE = 3'b000;
 			ROUND = 2'b00;
 			GAME = 2'b00;
 
@@ -108,17 +108,16 @@ module MorraCinese(
 					2'b10: NEXT_STATE = 3'b011;
 					2'b11: NEXT_STATE = 3'b100;
 				endcase
+			end else begin
+				if(ADV > 4'b0100) begin
+					GAME = 2'b01;
+				end else if(ADV < 4'b0100) begin
+					GAME = 2'b10;
+				end else if(ADV == 4'b0100) begin
+					GAME = 2'b11;
+				end
+				NEXT_STATE = 3'b000;
 			end
-		end else begin
-			if(ADV < 4'b0100) begin
-				GAME = 2'b01;
-			end else if(ADV > 4'b0100) begin
-				GAME = 2'b10;
-			end else if(ADV == 4'b0100) begin
-				GAME = 2'b11;
-			end
-			NEXT_STATE = 3'b000;
 		end
 	end
-
 endmodule
