@@ -33,7 +33,6 @@ module MorraCinese(
 
 	always @(posedge clk) begin : DATAPATH
 		if(START || CURRENT_STATE == 3'b000) begin
-//			CURRENT_STATE = 3'b000;
 			CURRENT_ROUND_WINNER = 2'b00;
 			PREV_ROUND_WINNER = 2'b00;
 			PREV_WINNING_MOVE = 2'b00;
@@ -43,9 +42,7 @@ module MorraCinese(
 				TO_PLAY = {P1, P2} + 4;
 			end
 		end else begin
-/*			if(CURRENT_STATE == 3'b001) begin
-				TO_PLAY = {P1, P2} + 4;
-*/
+
 			// IF per determinare se ci sono le condizioni per disputare il round
 			if((ADV > 4'b0010 && ADV < 4'b0110) && PLAYED < TO_PLAY) begin
 
@@ -87,36 +84,52 @@ module MorraCinese(
 	end
 
 
+	// fsm
+
 	always @(posedge clk) begin : FSM
+
+		// Case: reset, in any state
 		if(START) begin
 			NEXT_STATE = 3'b001;
 			ROUND = 2'b00;
 			GAME = 2'b00;
 
+		// Case: no reset, in reset state
 		end else if(!START && CURRENT_STATE == 3'b000) begin
 			NEXT_STATE = 3'b000;
 			ROUND = 2'b00;
 			GAME = 2'b00;
 
-		end else if(!START && CURRENT_STATE >= 3'b001) begin
+		// Case: no reset, in any other state
+		end else if(!START && CURRENT_STATE > 3'b000) begin
+
+			// If: game not done yet
 			if(((ADV > 4'b0010 && ADV < 4'b0110) && PLAYED < TO_PLAY) || PLAYED < 4) begin
-				GAME = 2'b00;
-				ROUND = CURRENT_ROUND_WINNER;
+				GAME = 2'b00;						// game currently in play
+				ROUND = CURRENT_ROUND_WINNER;		// round winner gets the round
+
+				// Case: round winner determines next state
 				case (ROUND)
 					2'b00: NEXT_STATE = 3'b101;
 					2'b01: NEXT_STATE = 3'b010;
 					2'b10: NEXT_STATE = 3'b011;
 					2'b11: NEXT_STATE = 3'b100;
 				endcase
+			
+			// If: game done
 			end else begin
-				if(ADV > 4'b0100) begin
+				ROUND = CURRENT_ROUND_WINNER;		// round winner gets the round
+				NEXT_STATE = 3'b000;				// next state goes back to reset state
+
+				// Game winner:
+				if(ADV > 4'b0100) begin				// game won by P1
 					GAME = 2'b01;
-				end else if(ADV < 4'b0100) begin
+				end else if(ADV < 4'b0100) begin	// game won by P2
 					GAME = 2'b10;
-				end else if(ADV == 4'b0100) begin
+				end else if(ADV == 4'b0100) begin	// game draws
 					GAME = 2'b11;
 				end
-				NEXT_STATE = 3'b000;
+
 			end
 		end
 	end
