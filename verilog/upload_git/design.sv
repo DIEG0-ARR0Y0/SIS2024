@@ -59,14 +59,14 @@ module MorraCinese(
 						4'b0111, 4'b1001, 4'b1110: begin
 							CURRENT_ROUND_WINNER = 2'b01;
 							PREV_ROUND_WINNER = 2'b01;
-							PREV_WINNING_MOVE = {P1};
+							PREV_WINNING_MOVE = P1;
 							ADV = ADV + 1;
 						end
 						// vince 2
 						4'b1101, 4'b0110, 4'b1011: begin
 							CURRENT_ROUND_WINNER = 2'b10;
 							PREV_ROUND_WINNER = 2'b10;
-							PREV_WINNING_MOVE = {P2};
+							PREV_WINNING_MOVE = P2;
 							ADV = ADV - 1;
 						end
 						// pari
