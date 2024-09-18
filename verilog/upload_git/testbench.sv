@@ -1,3 +1,5 @@
+// Code your testbench here
+// or browse Examples
 module MorraCinese_TB;
     reg [1:0] P1;
     reg [1:0] P2;
@@ -78,7 +80,7 @@ module MorraCinese_TB;
     Output();   //5
     
 
-    P1 = 2'b10;
+    P1 = 2'b11;
     P2 = 2'b11;
     Simulate();         
     #20;
@@ -98,7 +100,7 @@ module MorraCinese_TB;
     #20;
     Output();   //8
     
-
+    START = 1'b0;
     P1 = 2'b01; 
     P2 = 2'b10;
     Simulate(); 
