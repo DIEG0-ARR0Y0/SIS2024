@@ -32,50 +32,50 @@ module tb_MorraCinese;
 		START = 1'b1;	
 		P1 = 2'b00;
 		P2 = 2'b00;
-		$fdisplay(tbf, "Simulate %b %b %b", P1, P2, START);			 
+		$fdisplay(tbf, "Simulate %b %b %b %b %b", P1[1], P1[0], P2[1], P2[0], START);			 
 		#20;
-		$fdisplay(outf, "Outputs: %b %b", ROUND, GAME);
+      $fdisplay(outf, "Outputs: %b %b", ROUND[1], ROUND[0], GAME[1], GAME[0]);
 
 		//2. Game 1, Round 1
 		START = 1'b0;
 		P1 = 2'b01;
 		P2 = 2'b01;
-		$fdisplay(tbf, "Simulate %b %b %b", P1, P2, START);			 
+		$fdisplay(tbf, "Simulate %b %b %b %b %b", P1[1], P1[0], P2[1], P2[0], START);			 
 		#20;
 		$fdisplay(outf, "Outputs: %b %b", ROUND, GAME);
 
 		//3. Game 1, Round 2
 		P1 = 2'b10;
 		P2 = 2'b10;
-		$fdisplay(tbf, "Simulate %b %b %b", P1, P2, START);			 
+		$fdisplay(tbf, "Simulate %b %b %b %b %b", P1[1], P1[0], P2[1], P2[0], START);			 
 		#20;
 		$fdisplay(outf, "Outputs: %b %b", ROUND, GAME);
 
 		//4. Game 1, Round 3
 		P1 = 2'b11;
 		P2 = 2'b11;
-		$fdisplay(tbf, "Simulate %b %b %b", P1, P2, START);			 
+		$fdisplay(tbf, "Simulate %b %b %b %b %b", P1[1], P1[0], P2[1], P2[0], START);			 
 		#20;
 		$fdisplay(outf, "Outputs: %b %b", ROUND, GAME);
 
 		//5. Game 1, Round 4
 		P1 = 2'b00;
 		P2 = 2'b00;
-		$fdisplay(tbf, "Simulate %b %b %b", P1, P2, START);			 
+		$fdisplay(tbf, "Simulate %b %b %b %b %b", P1[1], P1[0], P2[1], P2[0], START);			 
 		#20;
 		$fdisplay(outf, "Outputs: %b %b", ROUND, GAME);
 
 		//6. Stand by
 		P1 = 2'b01;
 		P2 = 2'b10;
-		$fdisplay(tbf, "Simulate %b %b %b", P1, P2, START);			 
+		$fdisplay(tbf, "Simulate %b %b %b %b %b", P1[1], P1[0], P2[1], P2[0], START);			 
 		#20;
 		$fdisplay(outf, "Outputs: %b %b", ROUND, GAME);
 
 		//7. Stand by
 		P1 = 2'b01;
 		P2 = 2'b01;
-		$fdisplay(tbf, "Simulate %b %b %b", P1, P2, START);			 
+		$fdisplay(tbf, "Simulate %b %b %b %b %b", P1[1], P1[0], P2[1], P2[0], START);			 
 		#20;
 		$fdisplay(outf, "Outputs: %b %b", ROUND, GAME);
 
@@ -83,7 +83,7 @@ module tb_MorraCinese;
 		START = 1'b1;
 		P1 = 2'b00;
 		P2 = 2'b00;
-		$fdisplay(tbf, "Simulate %b %b %b", P1, P2, START);			 
+		$fdisplay(tbf, "Simulate %b %b %b %b %b", P1[1], P1[0], P2[1], P2[0], START);			 
 		#20;
 		$fdisplay(outf, "Outputs: %b %b", ROUND, GAME);
 
@@ -91,7 +91,7 @@ module tb_MorraCinese;
 		START = 1'b1;
 		P1 = 2'b00;
 		P2 = 2'b01;
-		$fdisplay(tbf, "Simulate %b %b %b", P1, P2, START);			 
+		$fdisplay(tbf, "Simulate %b %b %b %b %b", P1[1], P1[0], P2[1], P2[0], START);			 
 		#20;
 		$fdisplay(outf, "Outputs: %b %b", ROUND, GAME);
 
@@ -99,49 +99,49 @@ module tb_MorraCinese;
 		START = 1'b0;
 		P1 = 2'b01;
 		P2 = 2'b10;
-		$fdisplay(tbf, "Simulate %b %b %b", P1, P2, START);			 
+		$fdisplay(tbf, "Simulate %b %b %b %b %b", P1[1], P1[0], P2[1], P2[0], START);			 
 		#20;
 		$fdisplay(outf, "Outputs: %b %b", ROUND, GAME);
 
 		//11. Game 2, Round 2
 		P1 = 2'b01;
 		P2 = 2'b11;
-		$fdisplay(tbf, "Simulate %b %b %b", P1, P2, START);			 
+		$fdisplay(tbf, "Simulate %b %b %b %b %b", P1[1], P1[0], P2[1], P2[0], START);			 
 		#20;
 		$fdisplay(outf, "Outputs: %b %b", ROUND, GAME);
 
 		//12. Game 2, Round 3
 		P1 = 2'b10;
 		P2 = 2'b01;
-		$fdisplay(tbf, "Simulate %b %b %b", P1, P2, START);			 
+		$fdisplay(tbf, "Simulate %b %b %b %b %b", P1[1], P1[0], P2[1], P2[0], START);			 
 		#20;
 		$fdisplay(outf, "Outputs: %b %b", ROUND, GAME);
 
 		//13. Game 2, Round 4
 		P1 = 2'b11;
 		P2 = 2'b11;
-		$fdisplay(tbf, "Simulate %b %b %b", P1, P2, START);			 
+		$fdisplay(tbf, "Simulate %b %b %b %b %b", P1[1], P1[0], P2[1], P2[0], START);			 
 		#20;
 		$fdisplay(outf, "Outputs: %b %b", ROUND, GAME);
 
 		//14. Stand by
 		P1 = 2'b11;
 		P2 = 2'b00;
-		$fdisplay(tbf, "Simulate %b %b %b", P1, P2, START);			 
+		$fdisplay(tbf, "Simulate %b %b %b %b %b", P1[1], P1[0], P2[1], P2[0], START);			 
 		#20;
 		$fdisplay(outf, "Outputs: %b %b", ROUND, GAME);
 
 		//15. Stand by
 		P1 = 2'b10;
 		P2 = 2'b01;
-		$fdisplay(tbf, "Simulate %b %b %b", P1, P2, START);			 
+		$fdisplay(tbf, "Simulate %b %b %b %b %b", P1[1], P1[0], P2[1], P2[0], START);			 
 		#20;
 		$fdisplay(outf, "Outputs: %b %b", ROUND, GAME);
 
 		//16. Stand by
 		P1 = 2'b00;
 		P2 = 2'b00;
-		$fdisplay(tbf, "Simulate %b %b %b", P1, P2, START);			 
+		$fdisplay(tbf, "Simulate %b %b %b %b %b", P1[1], P1[0], P2[1], P2[0], START);			 
 		#20;
 		$fdisplay(outf, "Outputs: %b %b", ROUND, GAME);
 		
@@ -149,7 +149,7 @@ module tb_MorraCinese;
 		START = 1'b1;
 		P1 = 2'b00;
 		P2 = 2'b01;
-		$fdisplay(tbf, "Simulate %b %b %b", P1, P2, START);			 
+		$fdisplay(tbf, "Simulate %b %b %b %b %b", P1[1], P1[0], P2[1], P2[0], START);			 
 		#20;
 		$fdisplay(outf, "Outputs: %b %b", ROUND, GAME);
 
@@ -157,51 +157,50 @@ module tb_MorraCinese;
 		START = 1'b0;
 		P1 = 2'b10;
 		P2 = 2'b10;
-		$fdisplay(tbf, "Simulate %b %b %b", P1, P2, START);			 
+		$fdisplay(tbf, "Simulate %b %b %b %b %b", P1[1], P1[0], P2[1], P2[0], START);			 
 		#20;
 		$fdisplay(outf, "Outputs: %b %b", ROUND, GAME);
 
 		//11. Game 3, Round 2
 		P1 = 2'b01;
 		P2 = 2'b11;
-		$fdisplay(tbf, "Simulate %b %b %b", P1, P2, START);			 
+		$fdisplay(tbf, "Simulate %b %b %b %b %b", P1[1], P1[0], P2[1], P2[0], START);			 
 		#20;
 		$fdisplay(outf, "Outputs: %b %b", ROUND, GAME);
 
 		//12. Game 3, Round 3
 		P1 = 2'b10;
 		P2 = 2'b01;
-		$fdisplay(tbf, "Simulate %b %b %b", P1, P2, START);			 
+		$fdisplay(tbf, "Simulate %b %b %b %b %b", P1[1], P1[0], P2[1], P2[0], START);			 
 		#20;
 		$fdisplay(outf, "Outputs: %b %b", ROUND, GAME);
 
 		//13. Game 3, Round 4
 		P1 = 2'b11;
 		P2 = 2'b11;
-		$fdisplay(tbf, "Simulate %b %b %b", P1, P2, START);			 
+		$fdisplay(tbf, "Simulate %b %b %b %b %b", P1[1], P1[0], P2[1], P2[0], START);			 
 		#20;
 		$fdisplay(outf, "Outputs: %b %b", ROUND, GAME);
 
 		//14. Stand by
 		P1 = 2'b11;
 		P2 = 2'b00;
-		$fdisplay(tbf, "Simulate %b %b %b", P1, P2, START);			 
+		$fdisplay(tbf, "Simulate %b %b %b %b %b", P1[1], P1[0], P2[1], P2[0], START);			 
 		#20;
 		$fdisplay(outf, "Outputs: %b %b", ROUND, GAME);
 
 		//15. Stand by
 		P1 = 2'b10;
 		P2 = 2'b01;
-		$fdisplay(tbf, "Simulate %b %b %b", P1, P2, START);			 
+		$fdisplay(tbf, "Simulate %b %b %b %b %b", P1[1], P1[0], P2[1], P2[0], START);			 
 		#20;
 		$fdisplay(outf, "Outputs: %b %b", ROUND, GAME);
 
 		//16. Stand by
 		P1 = 2'b00;
 		P2 = 2'b00;
-		$fdisplay(tbf, "Simulate %b %b %b", P1, P2, START);			 
+		$fdisplay(tbf, "Simulate %b %b %b %b %b", P1[1], P1[0], P2[1], P2[0], START);			 
 		#20;
-
 
 		$fdisplay(outf, "Outputs: %b %b", ROUND, GAME);
 		$fdisplay(tbf, "quit");
