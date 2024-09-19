@@ -1,100 +1,212 @@
-// Code your testbench here
-// or browse Examples
+`timescale 1ns / 1ps
 
-// come viene simulato il file verilog? su eda playground non capisco come è possibile vedere i file di output e soprattutto non capisco se vengono generati
-module testbench;
-  
-  reg [1:0] P1, P2; 
-  reg START;
-  reg [1:0] ROUND;  // eventualmente modificare in wire
-  reg [1:0] GAME;  // eventualmente modificare in wire
-  reg clk;
+module tb_MorraCinese;
 
-  integer output;  // servirà per gestire il file creato "output_verilog.txt", vedi begin
-  integer test_script; // servirà per gestire il file creato "testbench.script", vedi begin
-  
-  MorraCinese Morracin(
-    .clk(clk), 
-    .P1(P1), 
-    .P2(P2), 
-    .START(START), 
-    .ROUND(ROUND), 
-    .GAME(GAME)
-    );
-    
-    //tasks
-    // Task per scrivere gli input nel file testbench.script
-    task Simulate();
-        $fdisplay(test_script, "simulate %b %b %b", P1, P2, START);
-    endtask
-  
-    // Task per scrivere l'output nel file output_verilog.txt
-    task Output();
-        $fdisplay(output, "Outputs: %b %b %b %b", ROUND[1], ROUND[0], GAME[1], GAME[0]);
-    endtask
-    
-    // alterno il segnale di clock
-    always #10 clk = ~clk;  
-  
-    initial begin
+	// File descriptors
+	integer tbf, outf;
 
-        // apertura file di output
-        output = $fopen("output_verilog.txt","w");
-        test_script = $fopen("testbench.script", "w");
+	reg clk;
+	reg START;
+	reg [1:0] P1;
+	reg [1:0] P2;
+	reg [1:0] ROUND;
+	reg [1:0] GAME;
 
-        // Dump delle variabili per la visualizzazione delle forme d'onda (approfondire)
-        $dumpfile("dump.vcd");
-        $dumpvars(1);
+	MorraCinese testing(
+		clk,
+		P1, P2, START,
+		ROUND, GAME);
 
-        // scrive il comando per caricare il modello SIS nello script
-        $fdisplay(test_script,"rl FSMD.blif"); // eventualmente adattare nome "FSMD.blif", è utilizzata per scrivere la stringa "rl FSMD.blif" nel file gestito dalla variabile test_script, aperta precedentemente con $fopen
-        // rl FSMD.blif fa parte dello script necessario per eseguire correttamente il modello SIS in ambiente SIS
+	always #10 clk = ~clk;
 
-        //inzializzo il clock
-        clk = 1'b0;
+	initial begin
+		$dumpfile("dump.vdc");
+		$dumpvars(1);
+		tbf = $fopen("testbench.script", "w");
+		outf = $fopen("output_verilog.txt", "w");
+		$fdisplay(tbf,"read_blif FSMD.blif");
 
-        // test 1: start alzato, decido n manche
-        START = 1'b1;  
-        P1 = 2'b01;  // nmanche=1+2=3 (da aggiungere alle 4 manche di base?) 
-        P2 = 2'b10; 
-        Simulate();			
-        #20;
-        Output();   
+		clk = 1'b0;
 
-        //test 2: 
-        START = 1'b0;  //setto start a 0 senza poi settarlo nuovamente se non cambia
-        P1 = 2'b00;  // no mossa
-        P2 = 2'b01; // sasso
-        Simulate();			
-        #20;
-        Output();
+		//1. Game 1, Round 0
+		START = 1'b1;	
+		P1 = 2'b00;
+		P2 = 2'b00;
+		$fdisplay(tbf, "Simulate %b %b %b", P1, P2, START);			 
+		#20;
+		$fdisplay(outf, "Outputs: %b %b", ROUND, GAME);
 
-        //test 3: 
-        P1 = 2'b01;  
-        P2 = 2'b11; 
-        Simulate();			
-        #20;
-        Output();
+		//2. Game 1, Round 1
+		START = 1'b0;
+		P1 = 2'b01;
+		P2 = 2'b01;
+		$fdisplay(tbf, "Simulate %b %b %b", P1, P2, START);			 
+		#20;
+		$fdisplay(outf, "Outputs: %b %b", ROUND, GAME);
 
-        //test 4: 
-        P1 = 2'b10;  
-        P2 = 2'b00; 
-        Simulate();			
-        #20;
-        Output();
+		//3. Game 1, Round 2
+		P1 = 2'b10;
+		P2 = 2'b10;
+		$fdisplay(tbf, "Simulate %b %b %b", P1, P2, START);			 
+		#20;
+		$fdisplay(outf, "Outputs: %b %b", ROUND, GAME);
 
-        //test 5: 
-        P1 = 2'b11;  
-        P2 = 2'b11; 
-        Simulate();			
-        #20;
-        Output();
+		//4. Game 1, Round 3
+		P1 = 2'b11;
+		P2 = 2'b11;
+		$fdisplay(tbf, "Simulate %b %b %b", P1, P2, START);			 
+		#20;
+		$fdisplay(outf, "Outputs: %b %b", ROUND, GAME);
 
-        // chiusura dei file di output e script
-        $fdisplay(test_script, "quit");  // chiusura script SIS
-        $fclose(test_script);
-        $fclose(output);
-        $finish;  // Termina la simulazione
+		//5. Game 1, Round 4
+		P1 = 2'b00;
+		P2 = 2'b00;
+		$fdisplay(tbf, "Simulate %b %b %b", P1, P2, START);			 
+		#20;
+		$fdisplay(outf, "Outputs: %b %b", ROUND, GAME);
 
-    end    
+		//6. Stand by
+		P1 = 2'b01;
+		P2 = 2'b10;
+		$fdisplay(tbf, "Simulate %b %b %b", P1, P2, START);			 
+		#20;
+		$fdisplay(outf, "Outputs: %b %b", ROUND, GAME);
+
+		//7. Stand by
+		P1 = 2'b01;
+		P2 = 2'b01;
+		$fdisplay(tbf, "Simulate %b %b %b", P1, P2, START);			 
+		#20;
+		$fdisplay(outf, "Outputs: %b %b", ROUND, GAME);
+
+		//8. Game 2, Round 0
+		START = 1'b1;
+		P1 = 2'b00;
+		P2 = 2'b00;
+		$fdisplay(tbf, "Simulate %b %b %b", P1, P2, START);			 
+		#20;
+		$fdisplay(outf, "Outputs: %b %b", ROUND, GAME);
+
+		//9. Game 2, Round 0
+		START = 1'b1;
+		P1 = 2'b00;
+		P2 = 2'b01;
+		$fdisplay(tbf, "Simulate %b %b %b", P1, P2, START);			 
+		#20;
+		$fdisplay(outf, "Outputs: %b %b", ROUND, GAME);
+
+		//10. Game 2, Round 1
+		START = 1'b0;
+		P1 = 2'b01;
+		P2 = 2'b10;
+		$fdisplay(tbf, "Simulate %b %b %b", P1, P2, START);			 
+		#20;
+		$fdisplay(outf, "Outputs: %b %b", ROUND, GAME);
+
+		//11. Game 2, Round 2
+		P1 = 2'b01;
+		P2 = 2'b11;
+		$fdisplay(tbf, "Simulate %b %b %b", P1, P2, START);			 
+		#20;
+		$fdisplay(outf, "Outputs: %b %b", ROUND, GAME);
+
+		//12. Game 2, Round 3
+		P1 = 2'b10;
+		P2 = 2'b01;
+		$fdisplay(tbf, "Simulate %b %b %b", P1, P2, START);			 
+		#20;
+		$fdisplay(outf, "Outputs: %b %b", ROUND, GAME);
+
+		//13. Game 2, Round 4
+		P1 = 2'b11;
+		P2 = 2'b11;
+		$fdisplay(tbf, "Simulate %b %b %b", P1, P2, START);			 
+		#20;
+		$fdisplay(outf, "Outputs: %b %b", ROUND, GAME);
+
+		//14. Stand by
+		P1 = 2'b11;
+		P2 = 2'b00;
+		$fdisplay(tbf, "Simulate %b %b %b", P1, P2, START);			 
+		#20;
+		$fdisplay(outf, "Outputs: %b %b", ROUND, GAME);
+
+		//15. Stand by
+		P1 = 2'b10;
+		P2 = 2'b01;
+		$fdisplay(tbf, "Simulate %b %b %b", P1, P2, START);			 
+		#20;
+		$fdisplay(outf, "Outputs: %b %b", ROUND, GAME);
+
+		//16. Stand by
+		P1 = 2'b00;
+		P2 = 2'b00;
+		$fdisplay(tbf, "Simulate %b %b %b", P1, P2, START);			 
+		#20;
+		$fdisplay(outf, "Outputs: %b %b", ROUND, GAME);
+		
+		//9. Game 3, Round 0
+		START = 1'b1;
+		P1 = 2'b00;
+		P2 = 2'b01;
+		$fdisplay(tbf, "Simulate %b %b %b", P1, P2, START);			 
+		#20;
+		$fdisplay(outf, "Outputs: %b %b", ROUND, GAME);
+
+		//10. Game 3, Round 1
+		START = 1'b0;
+		P1 = 2'b10;
+		P2 = 2'b10;
+		$fdisplay(tbf, "Simulate %b %b %b", P1, P2, START);			 
+		#20;
+		$fdisplay(outf, "Outputs: %b %b", ROUND, GAME);
+
+		//11. Game 3, Round 2
+		P1 = 2'b01;
+		P2 = 2'b11;
+		$fdisplay(tbf, "Simulate %b %b %b", P1, P2, START);			 
+		#20;
+		$fdisplay(outf, "Outputs: %b %b", ROUND, GAME);
+
+		//12. Game 3, Round 3
+		P1 = 2'b10;
+		P2 = 2'b01;
+		$fdisplay(tbf, "Simulate %b %b %b", P1, P2, START);			 
+		#20;
+		$fdisplay(outf, "Outputs: %b %b", ROUND, GAME);
+
+		//13. Game 3, Round 4
+		P1 = 2'b11;
+		P2 = 2'b11;
+		$fdisplay(tbf, "Simulate %b %b %b", P1, P2, START);			 
+		#20;
+		$fdisplay(outf, "Outputs: %b %b", ROUND, GAME);
+
+		//14. Stand by
+		P1 = 2'b11;
+		P2 = 2'b00;
+		$fdisplay(tbf, "Simulate %b %b %b", P1, P2, START);			 
+		#20;
+		$fdisplay(outf, "Outputs: %b %b", ROUND, GAME);
+
+		//15. Stand by
+		P1 = 2'b10;
+		P2 = 2'b01;
+		$fdisplay(tbf, "Simulate %b %b %b", P1, P2, START);			 
+		#20;
+		$fdisplay(outf, "Outputs: %b %b", ROUND, GAME);
+
+		//16. Stand by
+		P1 = 2'b00;
+		P2 = 2'b00;
+		$fdisplay(tbf, "Simulate %b %b %b", P1, P2, START);			 
+		#20;
+
+
+		$fdisplay(outf, "Outputs: %b %b", ROUND, GAME);
+		$fdisplay(tbf, "quit");
+		$fclose(tbf);
+		$fclose(outf);
+		$finish;
+	end
 endmodule
