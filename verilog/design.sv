@@ -53,9 +53,10 @@ module MorraCinese(
 			PLAYED = 5'b00000;
 			ADV = 4'b0100;
 			if(START) begin
-				TO_PLAY = {P1, P2} + 4;
-			end else
-				TO_PLAY = 5'b00000;
+				TO_PLAY = TO_PLAY + {P1, P2};
+			end else begin
+				TO_PLAY = 5'b00100;
+			end
 
 	/*	Case 2:
 		If we're not in Case 1 it means FSM state is any other
@@ -76,8 +77,6 @@ module MorraCinese(
 			// If round outcome is INVALID:
 			if({PREV_ROUND_WINNER, PREV_WINNING_MOVE} == {2'b01, P1} || {PREV_ROUND_WINNER, PREV_WINNING_MOVE} == {2'b10, P2} || P1 == 2'b00 || P2 == 2'b00) begin
 				CURRENT_ROUND_WINNER = 2'b00;
-//				PREV_WINNING_MOVE = PREV_WINNING_MOVE;
-//				PREV_WINNING_MOVE = PREV_ROUND_WINNER;
 
 			// If round outcome is   VALID:
 			end else begin
@@ -147,7 +146,6 @@ module MorraCinese(
 	*/
 		end else if(CURRENT_STATE == 3'b000) begin
 			NEXT_STATE = 3'b000;
-//			TO_PLAY = 5'b00000;
 			ROUND = 2'b00;
 			GAME = 2'b00;
 
