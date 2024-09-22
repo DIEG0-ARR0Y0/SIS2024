@@ -1,0 +1,55 @@
+PRE OTTIMIZZAZIONE FSMD
+sis> ps
+fsmd          	pi= 5	po= 4	nodes=278	latches=26
+lits(sop)=1167	lits(fac)=1094
+
+
+
+OTTIMIZZAZIONE FSMD
+sis> source script.ruggedx			(sono x1000 script.rugged)
+
+
+
+POST OTTIMIZZAZIONE
+sis> ps
+fsmd          	pi= 5	po= 4	nodes= 66	latches=26
+lits(sop)= 404	lits(fac)= 346
+
+
+
+
+
+MAPPING PER AREA
+
+sis> read_library synch.genlib
+sis> map -m 0 -s
+warning: unknown latch type at node '{[15]}' (RISING_EDGE assumed)
+warning: unknown latch type at node '{[16]}' (RISING_EDGE assumed)
+WARNING: uses as primary input drive the value (0.20,0.20)
+WARNING: uses as primary input arrival the value (0.00,0.00)
+WARNING: uses as primary input max load limit the value (999.00)
+WARNING: uses as primary output required the value (0.00,0.00)
+WARNING: uses as primary output load the value 1.00
+>>> before removing serial inverters <<<
+# of outputs:          30
+total gate area:       8544.00
+maximum arrival time: (54.80,54.80)
+maximum po slack:     (-6.60,-6.60)
+minimum po slack:     (-54.80,-54.80)
+total neg slack:      (-740.20,-740.20)
+# of failing outputs:  30
+>>> before removing parallel inverters <<<
+# of outputs:          30
+total gate area:       8224.00
+maximum arrival time: (52.60,52.60)
+maximum po slack:     (-6.60,-6.60)
+minimum po slack:     (-52.60,-52.60)
+total neg slack:      (-719.20,-719.20)
+# of failing outputs:  30
+# of outputs:          30
+total gate area:       7760.00
+maximum arrival time: (52.20,52.20)
+maximum po slack:     (-6.60,-6.60)
+minimum po slack:     (-52.20,-52.20)
+total neg slack:      (-712.60,-712.60)
+# of failing outputs:  30
